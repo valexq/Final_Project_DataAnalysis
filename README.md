@@ -3,7 +3,16 @@
 Proyecto integrador orientado al desarrollo de una solución completa de análisis de datos, inteligencia de negocios y aprendizaje computacional, utilizando indicadores climáticos globales como caso de estudio.
 
 El proyecto implementa un flujo de trabajo end-to-end que incluye procesos ETL, análisis exploratorio de datos (EDA), visualización de información, generación de dashboards y construcción de modelos predictivos supervisados.
+## Integrantes
 
+Grupo 5
+
+| Nombre | Fase principal | GitHub |
+| --- | --- | --- |
+| Vanessa Alfaro |  | `@valexq` |
+| Juan Manuel Valencia |  | `@Juanchos2905` |
+| Ziuvar Ruiz |  | `@ziuvar` |
+| Juan Cardona | | `@jcardser` |
 ---
 
 # 1. Descripción del proyecto
