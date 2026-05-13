@@ -1,12 +1,21 @@
-# Proyecto de Analítica de Datos y Modelo Predictivo sobre Cambio Climático
+# Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
 Proyecto integrador orientado al desarrollo de una solución completa de análisis de datos, inteligencia de negocios y aprendizaje computacional, utilizando indicadores climáticos globales como caso de estudio.
 
 El proyecto implementa un flujo de trabajo end-to-end que incluye procesos ETL, análisis exploratorio de datos (EDA), visualización de información, generación de dashboards y construcción de modelos predictivos supervisados.
+## Integrantes
 
+Grupo 5
+
+| Nombre | Fase principal | GitHub |
+| --- | --- | --- |
+| Vanessa Alfaro |  | `@valexq` |
+| Juan Manuel Valencia |  | `@Juanchos2905` |
+| Ziuvar Ruiz |  | `@ziuvar` |
+| Juan Cardona | | `@jcardser` |
 ---
 
-# 1. Descripción del Proyecto
+# 1. Descripción del proyecto
 
 Este proyecto tiene como objetivo analizar indicadores relacionados con el cambio climático en múltiples países entre los años 2000 y 2023, utilizando técnicas de analítica de datos y aprendizaje automático para extraer patrones, generar conocimiento útil y construir modelos predictivos.
 
@@ -32,11 +41,11 @@ A partir de estos datos se desarrolló una solución analítica completa que per
 
 # 2. Objetivos
 
-## Objetivo General
+## Objetivo general
 
 Desarrollar un proyecto integral de análisis de datos y aprendizaje computacional aplicado al estudio del cambio climático, incorporando procesos ETL, inteligencia de negocios y modelado predictivo.
 
-## Objetivos Específicos
+## Objetivos específicos
 
 - Identificar y transformar fuentes de datos relevantes.
 - Realizar limpieza y análisis exploratorio de datos.
@@ -47,7 +56,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 3. Relación con los Resultados de Aprendizaje
+# 3. Relación con los resultados de aprendizaje
 
 ## Inteligencia de Negocios (BI)
 
@@ -55,13 +64,13 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 - Diseño de un modelo de datos para explotación analítica.
 - Creación de dashboards interactivos para visualización de insights.
 
-## Analítica de Datos (AD)
+## Analítica de datos (AD)
 
 - Implementación del proceso ETL.
 - Limpieza y transformación de datos.
 - Análisis exploratorio y visualización de patrones.
 
-## Aprendizaje Computacional (AC)
+## Aprendizaje computacional (AC)
 
 - Implementación de modelos supervisados.
 - Evaluación mediante métricas de desempeño.
@@ -69,7 +78,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 4. Tecnologías Utilizadas
+# 4. Tecnologías utilizadas
 
 | Componente | Tecnología |
 |---|---|
@@ -83,7 +92,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 5. Arquitectura del Proyecto
+# 5. Arquitectura del proyecto
 
 ```text
 climate_analytics_project/
