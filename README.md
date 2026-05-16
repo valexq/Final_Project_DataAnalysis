@@ -123,92 +123,16 @@ climate_analytics_project/
 
 # 6. Fase 1 - Recopilación y Transformación de Datos
 
-Esta fase implementa el proceso ETL solicitado en el documento del proyecto. La fuente principal es `data/raw/climate_change_dataset.csv`, un dataset climático con 1,000 registros, 15 países y periodo 2000-2023.
+En esta primera parte se trabajó con el archivo original del proyecto, `data/raw/climate_change_dataset.csv`. El dataset contiene 1,000 registros de indicadores climáticos para 15 países entre los años 2000 y 2023.
 
-## Objetivo de la fase
+El trabajo se enfocó en dejar una base confiable para el resto del proyecto. Se revisó la estructura inicial del archivo, se normalizaron los nombres de las columnas, se ajustaron los tipos de datos y se validaron aspectos básicos de calidad como valores faltantes, duplicados y rangos esperados.
 
-Dejar una base limpia, validada y documentada para que las siguientes fases puedan desarrollar EDA, inteligencia de negocios y modelado predictivo sin repetir tareas de preparación.
-
-## Proceso implementado
-
-- Extracción del CSV original desde `data/raw/`.
-- Normalización de nombres de columnas a formato `snake_case`.
-- Conversión de tipos de dato.
-- Limpieza de espacios en variables de texto.
-- Eliminación de duplicados exactos si existen.
-- Ordenamiento por país y año.
-- Validación de reglas de calidad: años 2000-2023, población positiva, porcentajes entre 0 y 100 y métricas climáticas no negativas.
-- Generación de datasets limpios, dataset procesado, reporte de calidad y diccionario de datos.
-
-## Cómo ejecutar la fase
-
-Instalar dependencias:
-
-```bash
-pip install -r requirements.txt
-```
-
-Ejecutar el ETL:
-
-```bash
-python -m src.etl
-```
-
-Ejecutar pruebas:
-
-```bash
-python -m pytest
-```
-
-## Entregables generados
-
-| Archivo | Uso |
-| --- | --- |
-| `notebooks/00_data_collection_transformation.ipynb` | Notebook explicativo de la fase 1 |
-| `data/cleaned/climate_change_cleaned.csv` | Dataset limpio para EDA |
-| `data/processed/climate_change_model_ready.csv` | Dataset procesado para BI y modelado |
-| `reports/tables/data_quality_report.csv` | Reporte de calidad por columna |
-| `reports/tables/data_quality_rules.csv` | Resultado de reglas de validación |
-| `reports/tables/data_dictionary.csv` | Diccionario de datos |
-
-## Uso por las siguientes fases
-
-- Fase 2 - EDA: usar `data/cleaned/climate_change_cleaned.csv`.
-- Fase 3 - BI: usar `data/processed/climate_change_model_ready.csv` y `reports/tables/data_dictionary.csv`.
-- Fase 4 - Modelado predictivo: usar el dataset procesado y realizar allí el split, escalado, codificación y entrenamiento.
+Como resultado, quedaron datos limpios y datos procesados para que las siguientes fases puedan concentrarse en el análisis, el dashboard y el modelo predictivo sin repetir la preparación inicial.
 
 ---
 
 # 7. Fase 2 - Análisis Exploratorio de Datos (EDA)
 
-Esta fase utiliza el dataset limpio generado en la fase 1 para revisar la calidad final de los datos, analizar su comportamiento inicial y construir visualizaciones de apoyo para BI y modelado.
+En la segunda fase se tomó la base limpia y se realizó una exploración inicial para entender mejor el comportamiento de las variables. Se revisaron estadísticas descriptivas, comparaciones por país, cambios por año y relaciones entre indicadores como temperatura, emisiones de CO2, lluvias, energía renovable y área forestal.
 
-## Proceso implementado
-
-- Confirmación de valores faltantes, duplicados y estructura del dataset limpio.
-- Estadísticas descriptivas de las variables numéricas.
-- Resúmenes agregados por país y por año.
-- Visualización de distribuciones, tendencias temporales y relaciones entre variables.
-- Cálculo de matriz de correlación y ranking de correlaciones más relevantes.
-
-## Cómo ejecutar la fase
-
-```bash
-python -m src.eda
-```
-
-## Entregables generados
-
-| Archivo | Uso |
-| --- | --- |
-| `notebooks/01_data_understanding.ipynb` | Notebook ejecutado de EDA |
-| `reports/tables/eda_preliminary_summary.csv` | Resumen preliminar del dataset limpio |
-| `reports/tables/eda_numeric_summary.csv` | Estadísticas descriptivas |
-| `reports/tables/eda_country_summary.csv` | Indicadores agregados por país |
-| `reports/tables/eda_yearly_summary.csv` | Indicadores agregados por año |
-| `reports/tables/eda_correlation_matrix.csv` | Matriz de correlación |
-| `reports/tables/eda_top_correlations.csv` | Ranking de correlaciones |
-| `reports/figures/eda_distributions.png` | Distribuciones de variables |
-| `reports/figures/eda_yearly_trends.png` | Tendencias anuales |
-| `reports/figures/eda_correlation_heatmap.png` | Mapa de calor de correlaciones |
-| `reports/figures/eda_country_temperature_co2.png` | Relación por país entre temperatura, CO2 y energía renovable |
+También se generaron visualizaciones para observar distribuciones, tendencias y correlaciones. Esta parte sirve como puente entre la limpieza de datos y las fases posteriores de inteligencia de negocios y aprendizaje computacional, porque permite identificar patrones generales antes de construir dashboards o modelos.
