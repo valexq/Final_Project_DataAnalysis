@@ -1,0 +1,10 @@
+variable,year,avg_temperature_c,co2_emissions_tons_capita,sea_level_rise_mm,rainfall_mm,population,renewable_energy_pct,extreme_weather_events,forest_area_pct
+year,1.0,0.021,0.041,0.035,-0.014,0.072,0.024,-0.022,-0.041
+avg_temperature_c,0.021,1.0,0.012,0.059,-0.005,0.004,-0.065,0.035,-0.017
+co2_emissions_tons_capita,0.041,0.012,1.0,-0.039,0.013,0.012,-0.023,-0.004,0.031
+sea_level_rise_mm,0.035,0.059,-0.039,1.0,0.022,-0.0,0.004,0.025,-0.029
+rainfall_mm,-0.014,-0.005,0.013,0.022,1.0,0.009,-0.006,-0.007,0.019
+population,0.072,0.004,0.012,-0.0,0.009,1.0,0.002,0.005,-0.012
+renewable_energy_pct,0.024,-0.065,-0.023,0.004,-0.006,0.002,1.0,0.0,-0.021
+extreme_weather_events,-0.022,0.035,-0.004,0.025,-0.007,0.005,0.0,1.0,-0.009
+forest_area_pct,-0.041,-0.017,0.031,-0.029,0.019,-0.012,-0.021,-0.009,1.0

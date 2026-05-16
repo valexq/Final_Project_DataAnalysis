@@ -1,0 +1,2 @@
+rows,columns,countries,year_min,year_max,missing_total,duplicate_exact_rows,numeric_columns,categorical_columns
+1000,10,15,2000,2023,0,0,9,1
