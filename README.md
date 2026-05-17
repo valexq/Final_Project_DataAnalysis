@@ -15,7 +15,7 @@ Grupo 5
 | Juan Cardona | | `@jcardser` |
 ---
 
-# 1. Descripción del proyecto
+# Descripción del proyecto
 
 Este proyecto tiene como objetivo analizar indicadores relacionados con el cambio climático en múltiples países entre los años 2000 y 2023, utilizando técnicas de analítica de datos y aprendizaje automático para extraer patrones, generar conocimiento útil y construir modelos predictivos.
 
@@ -39,7 +39,7 @@ A partir de estos datos se desarrolló una solución analítica completa que per
 
 ---
 
-# 2. Objetivos
+# Objetivos
 
 ## Objetivo general
 
@@ -56,7 +56,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 3. Relación con los resultados de aprendizaje
+# Relación con los resultados de aprendizaje
 
 ## Inteligencia de Negocios (BI)
 
@@ -78,7 +78,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 4. Tecnologías utilizadas
+# Tecnologías utilizadas
 
 | Componente | Tecnología |
 |---|---|
@@ -92,7 +92,7 @@ Desarrollar un proyecto integral de análisis de datos y aprendizaje computacion
 
 ---
 
-# 5. Arquitectura del proyecto
+# Arquitectura del proyecto
 
 ```text
 climate_analytics_project/
@@ -121,7 +121,7 @@ climate_analytics_project/
 
 ---
 
-# 6. Fase 1 - Recopilación y Transformación de Datos
+# Fase 1 - Recopilación y transformación de datos
 
 En esta primera parte se trabajó con el archivo original del proyecto, `data/raw/climate_change_dataset.csv`. El dataset contiene 1,000 registros de indicadores climáticos para 15 países entre los años 2000 y 2023.
 
@@ -131,8 +131,91 @@ Como resultado, quedaron datos limpios y datos procesados para que las siguiente
 
 ---
 
-# 7. Fase 2 - Análisis Exploratorio de Datos (EDA)
+# Fase 2 - Análisis Exploratorio de Datos (EDA)
 
 En la segunda fase se tomó la base limpia y se realizó una exploración inicial para entender mejor el comportamiento de las variables. Se revisaron estadísticas descriptivas, comparaciones por país, cambios por año y relaciones entre indicadores como temperatura, emisiones de CO2, lluvias, energía renovable y área forestal.
 
 También se generaron visualizaciones para observar distribuciones, tendencias y correlaciones. Esta parte sirve como puente entre la limpieza de datos y las fases posteriores de inteligencia de negocios y aprendizaje computacional, porque permite identificar patrones generales antes de construir dashboards o modelos.
+
+# Fase 3 — Inteligencia de Negocios: Modelo de Datos
+
+## Modelo Dimensional — Esquema Estrella
+
+```mermaid
+erDiagram
+    FACT_INDICADORES_CLIMATICOS {
+        int id_tiempo FK
+        int id_pais FK
+        int id_evento FK
+        float Temperatura_C
+        float Emisiones_CO2_TonXHab
+        float Aumento_Nivel_Mar_mm
+        float Precipitaciones_mm
+        int Poblacion
+        float Energia_Renovable_Pct
+        int Eventos_Extremos
+        float Area_Forestal_Pct
+    }
+
+    DIM_TIEMPO {
+        int id_tiempo PK
+        int Anio
+        string Decada
+    }
+
+    DIM_PAIS {
+        int id_pais PK
+        string Pais
+        string Continente
+        string Region_Clima
+        string Nivel_Desarrollo
+    }
+
+    DIM_EVENTO_EXTREMO {
+        int id_evento PK
+        int Frecuencia_Anual
+        string Tipo_Evento
+        int Severidad
+    }
+
+    DIM_INDICADOR {
+        int id_indicador PK
+        string Nombre
+        string Unidad_Medida
+        string Categoria
+        string Fuente_Dato
+    }
+
+    DIM_TIEMPO ||--o{ FACT_INDICADORES_CLIMATICOS : "tiene"
+    DIM_PAIS ||--o{ FACT_INDICADORES_CLIMATICOS : "registra"
+    DIM_EVENTO_EXTREMO ||--o{ FACT_INDICADORES_CLIMATICOS : "clasifica"
+    DIM_INDICADOR ||--o{ FACT_INDICADORES_CLIMATICOS : "describe"
+```
+
+## Descripción del modelo
+
+El modelo sigue un **esquema estrella** estándar de inteligencia de negocios, con una tabla de hechos central rodeada de cuatro dimensiones.
+
+### Tabla de hechos — `FACT_INDICADORES_CLIMATICOS`
+Contiene las métricas numéricas de cada combinación país-año. Es la tabla principal del análisis con 1.000 registros (15 países × 24 años).
+
+### Dimensiones
+
+| Dimensión | Descripción |
+|-----------|-------------|
+| `DIM_TIEMPO` | Años del período 2000–2023 con clasificación por década |
+| `DIM_PAIS` | Los 15 países con atributos geográficos y nivel de desarrollo |
+| `DIM_EVENTO_EXTREMO` | Clasificación de eventos climáticos por frecuencia y severidad |
+| `DIM_INDICADOR` | Metadatos de cada variable: unidad, categoría y fuente |
+
+### Reglas de negocio
+
+| Regla | Descripción |
+|-------|-------------|
+| RN-01 | Cada registro representa un país-año único |
+| RN-02 | La temperatura se mide en °C con dos decimales |
+| RN-03 | Las emisiones de CO₂ son toneladas per cápita |
+| RN-04 | La energía renovable y el área forestal son porcentajes (0–100) |
+| RN-05 | Los eventos extremos son conteo entero anual por país |
+| RN-06 | La severidad del evento se clasifica en 5 niveles |
+| RN-07 | El período de análisis es 2000–2023 (24 años, 15 países) |
