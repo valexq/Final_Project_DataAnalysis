@@ -2,13 +2,13 @@
 
 Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
 
-## Integrantes — Grupo 5
+## Integrantes - Grupo 5
 
 | Nombre | Fase principal | GitHub |
 | --- | --- | --- |
 | Vanessa Alfaro | Fase 3 - Inteligencia de negocios BI | `@valexq` |
 | Juan Manuel Valencia | | `@Juanchos2905` |
-| Ziuvar Ruiz | Fases 1 y 2 — ETL y EDA | `@ziuvar` |
+| Ziuvar Ruiz | Fases 1 y 2 - ETL y EDA | `@ziuvar` |
 | Juan Cardona | | `@jcardser` |
 
 ---
