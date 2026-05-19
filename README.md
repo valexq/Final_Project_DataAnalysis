@@ -219,3 +219,4 @@ Contiene las métricas numéricas de cada combinación país-año. Es la tabla p
 | RN-05 | Los eventos extremos son conteo entero anual por país |
 | RN-06 | La severidad del evento se clasifica en 5 niveles |
 | RN-07 | El período de análisis es 2000–2023 (24 años, 15 países) |
+
