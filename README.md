@@ -93,8 +93,6 @@ También se generaron visualizaciones para observar distribuciones, tendencias y
 
 ## Modelo dimensional — Esquema estrella
 
-El modelo fue simplificado respecto a la versión inicial para reflejar con mayor precisión la estructura real del dataset y facilitar su implementación en Power BI. Se eliminó `DIM_INDICADOR` porque en un dataset con variables fijas las métricas ya están contenidas en la tabla de hechos y una dimensión de metadatos no aporta valor analítico real. Se reemplazó `DIM_EVENTO_EXTREMO` por `DIM_SEVERIDAD`, que clasifica únicamente el nivel de impacto sin redundar con los conteos ya presentes en los hechos.
-
 ```mermaid
 erDiagram
     FACT_CLIMA {
