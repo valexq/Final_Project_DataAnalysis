@@ -50,15 +50,18 @@ Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL
 climate_analytics_project/
 │
 ├── data/
-│   ├── raw/              # Datos originales
-│   ├── cleaned/          # Datos limpios
-│   ├── processed/        # Datos transformados
-├── notebooks/            # Notebooks del análisis
+│   ├── raw/              
+│            └── climate_change_dataset.csv      # Dataset original
+│   ├── cleaned/      
+│            └── climate_change_cleaned.csv      # Datos limpios
+│   ├── processed/       
+│            └── climate_change_model_ready.csv  # Datos transformados
+├── notebooks/                                   # Notebooks del análisis
 │   ├── 01_data_collection_transformation.ipynb
 │   ├── 02_data_understanding.ipynb
 │   └── 03_modelado_predictivo.ipynb
 ├── reports/
-│   └── Dashboard proyecto final DA     # Informe final
+│   └── Dashboard proyecto final DA             # Informe final
 ├── requirements.txt
 └── README.md
 ```
