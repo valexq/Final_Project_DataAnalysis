@@ -1,6 +1,6 @@
 # Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
-Análisis integral de indicadores climáticos globales (2000–2024) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
+Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
 
 
 ## Dataset
@@ -12,6 +12,18 @@ Análisis integral de indicadores climáticos globales (2000–2024) para 15 pa�
 - Cantidad de variable: 10.
 
 ## Diccionario de variables
+| Campo                                    | Descripción                                                                                                            | Formato             
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------- 
+| `Year`                                   | Año en el que se registraron los datos climáticos.                                                                     | YYYY                          
+| `Country`                                | País o región donde se recopilaron los datos climáticos.                                                               | Texto                         
+| `Average Temperature (°C)`               | Temperatura promedio anual registrada en el país.                                                                      | Grados Celsius (°C)           
+| `CO2 Emissions (Metric Tons per Capita)` | Emisiones promedio de CO2 por habitante, reflejando                                                                    | Toneladas métricas per cápita
+| `Sea Level Rise (mm)`                    | Incremento anual del nivel del mar registrado en regiones costeras.                                                    | Milímetros (mm)              
+| `Rainfall (mm)`                          | Cantidad total de precipitación anual registrada.                                                                      | Milímetros (mm)              
+| `Population`                             | Población estimada del país en el año correspondiente.                                                                 | Número de habitantes          
+| `Renewable Energy (%)`                   | Porcentaje del consumo energético total proveniente de fuentes renovables como solar, eólica o hidroeléctrica.         | Porcentaje (%)                
+| `Extreme Weather Events`                 | Número de eventos climáticos extremos registrados, como huracanes, incendios forestales, inundaciones o sequías.       | Cantidad de eventos           
+| `Forest Area (%)`                        | Porcentaje del territorio nacional cubierto por bosques.                                                               | Porcentaje (%)               
 
 
 ## Integrantes - Grupo 5
