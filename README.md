@@ -6,10 +6,10 @@ Análisis integral de indicadores climáticos globales (2000–2023) para 15 pa�
 
 | Nombre | Fase principal | GitHub |
 | --- | --- | --- |
-| Vanessa Alfaro | Fase 3 - Inteligencia de negocios BI | `@valexq` |
-| Juan Manuel Valencia | | `@Juanchos2905` |
 | Ziuvar Ruiz | Fases 1 y 2 - ETL y EDA | `@ziuvar` |
-| Juan Cardona | | `@jcardser` |
+| Vanessa Alfaro | Fase 3 - Inteligencia de negocios BI | `@valexq` |
+| Juan Manuel Valencia | Fase 4 y 5 | `@Juanchos2905` |
+| Juan Cardona | Fase 4 y 5 | `@jcardser` |
 
 ---
 
@@ -24,7 +24,7 @@ El dataset contiene 1.000 registros con variables como temperatura promedio, emi
 Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL, inteligencia de negocios y aprendizaje computacional, con los siguientes entregables:
 
 - Datos limpios y transformados listos para análisis.
-- Dashboard interactivo con insights accionables.
+- Dashboard interactivo con insights.
 - Modelo supervisado evaluado con métricas de desempeño.
 - Conclusiones y recomendaciones basadas en evidencia.
 
@@ -76,10 +76,9 @@ climate_analytics_project/
 # Fase 1 - Recopilación y transformación de datos
 
 En esta primera parte se trabajó con el archivo original del proyecto, `data/raw/climate_change_dataset.csv`. El dataset contiene 1,000 registros de indicadores climáticos para 15 países entre los años 2000 y 2023.
+El trabajo se enfocó en dejar una base confiable para el resto del proyecto. Se revisó la estructura inicial del archivo, se normalizaron los nombres de las columnas, se ajustaron los tipos de datos y se validaron aspectos básicos de calidad como valores nulos, faltantes, duplicados y rangos esperados.
 
-El trabajo se enfocó en dejar una base confiable para el resto del proyecto. Se revisó la estructura inicial del archivo, se normalizaron los nombres de las columnas, se ajustaron los tipos de datos y se validaron aspectos básicos de calidad como valores faltantes, duplicados y rangos esperados.
-
-Como resultado, quedaron datos limpios y datos procesados para que las siguientes fases puedan concentrarse en el análisis, el dashboard y el modelo predictivo sin repetir la preparación inicial.
+Como resultado, quedaron datos limpios y datos procesados para que las siguientes fases puedan concentrarse en el análisis, el dashboard y el modelo predictivo.
 
 ---
 
@@ -152,7 +151,7 @@ Contiene todas las métricas numéricas por combinación país-año. Es la tabla
 
 ---
 
-## Insights del Dashboard
+## Insights del dashboard
 
 Los siguientes hallazgos fueron extraídos directamente de los indicadores y visualizaciones del dashboard de Power BI construido sobre el dataset limpio.
 
