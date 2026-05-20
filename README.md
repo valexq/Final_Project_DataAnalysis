@@ -1,6 +1,18 @@
 # Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
-Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
+Análisis integral de indicadores climáticos globales (2000–2024) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
+
+
+## Dataset
+
+- Nombre: `Climate Change Dataset`.
+- Fuente: Kaggle.
+- Enlace: [https://www.kaggle.com/datasets/bhadramohit/climate-change-dataset]
+- Registros: 1000.
+- Cantidad de variable: 10.
+
+## Diccionario de variables
+
 
 ## Integrantes - Grupo 5
 
