@@ -2,14 +2,14 @@
 
 Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
 
-## Integrantes — Grupo 5
+## Integrantes - Grupo 5
 
 | Nombre | Fase principal | GitHub |
-| --- | --- | --- |
-| Vanessa Alfaro | | `@valexq` |
-| Juan Manuel Valencia | | `@Juanchos2905` |
-| Ziuvar Ruiz | Fases 1 y 2 — ETL y EDA | `@ziuvar` |
-| Juan Cardona | | `@jcardser` |
+| --- |----------------| --- |
+| Ziuvar Ruiz | Fases 1 y 2    | `@ziuvar` |
+| Vanessa Alfaro | Fase 3         | `@valexq` |
+| Juan Manuel Valencia | Fase 4 y 5     | `@Juanchos2905` |
+| Juan Cardona | Fase 4 y 5  | `@jcardser` |
 
 ---
 
@@ -24,7 +24,7 @@ El dataset contiene 1.000 registros con variables como temperatura promedio, emi
 Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL, inteligencia de negocios y aprendizaje computacional, con los siguientes entregables:
 
 - Datos limpios y transformados listos para análisis.
-- Dashboard interactivo con insights accionables.
+- Dashboard interactivo con insights.
 - Modelo supervisado evaluado con métricas de desempeño.
 - Conclusiones y recomendaciones basadas en evidencia.
 
@@ -53,21 +53,13 @@ climate_analytics_project/
 │   ├── raw/              # Datos originales
 │   ├── cleaned/          # Datos limpios
 │   ├── processed/        # Datos transformados
-│   └── external/         # Datos externos de apoyo
-│
 ├── notebooks/            # Notebooks del análisis
-│
+│   ├── 01_data_collection_transformation.ipynb
+│   ├── 02_data_understanding.ipynb
+│   └── 03_modelado_predictivo.ipynb
 ├── reports/
-│   ├── figures/          # Gráficas exportadas
-│   ├── tables/           # Tablas y métricas
-│   └── final_report/     # Informe final
-│
-├── src/                  # Código fuente reutilizable
-│
-├── tests/                # Pruebas unitarias
-│
+│   └── Dashboard proyecto final DA     # Informe final
 ├── requirements.txt
-├── environment.yml
 └── README.md
 ```
 
@@ -83,17 +75,15 @@ Como resultado, quedaron datos limpios y datos procesados para que las siguiente
 
 ---
 
-# Fase 2 - Análisis Exploratorio de Datos (EDA)
+# Fase 2 - Análisis exploratorio de datos (EDA)
 
 En la segunda fase se tomó la base limpia y se realizó una exploración inicial para entender mejor el comportamiento de las variables. Se revisaron estadísticas descriptivas, comparaciones por país, cambios por año y relaciones entre indicadores como temperatura, emisiones de CO2, lluvias, energía renovable y área forestal.
 
 También se generaron visualizaciones para observar distribuciones, tendencias y correlaciones. Esta parte sirve como puente entre la limpieza de datos y las fases posteriores de inteligencia de negocios y aprendizaje computacional, porque permite identificar patrones generales antes de construir dashboards o modelos.
 
-# Fase 3 — Inteligencia de Negocios: Modelo de Datos
+# Fase 3 — Inteligencia de negocios: modelo de datos
 
-## Modelo Dimensional — Esquema Estrella
-
-El modelo fue simplificado respecto a la versión inicial para reflejar con mayor precisión la estructura real del dataset y facilitar su implementación en Power BI. Se eliminó `DIM_INDICADOR` porque en un dataset con variables fijas las métricas ya están contenidas en la tabla de hechos y una dimensión de metadatos no aporta valor analítico real. Se reemplazó `DIM_EVENTO_EXTREMO` por `DIM_SEVERIDAD`, que clasifica únicamente el nivel de impacto sin redundar con los conteos ya presentes en los hechos.
+## Modelo dimensional — Esquema Estrella
 
 ```mermaid
 erDiagram
@@ -154,7 +144,7 @@ Contiene todas las métricas numéricas por combinación país-año. Es la tabla
 
 ---
 
-## Insights del Dashboard
+## Insights del dashboard
 
 Los siguientes hallazgos fueron extraídos directamente de los indicadores y visualizaciones del dashboard de Power BI construido sobre el dataset limpio.
 

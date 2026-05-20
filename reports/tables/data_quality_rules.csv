@@ -1,9 +1,0 @@
-rule,column,passed,violation_count,min_value,max_value
-year_between_2000_and_2023,year,True,0,2000.0,2023.0
-population_positive,population,True,0,3660891.0,1397016073.0
-renewable_energy_pct_between_0_and_100,renewable_energy_pct,True,0,5.1,50.0
-forest_area_pct_between_0_and_100,forest_area_pct,True,0,10.1,70.0
-co2_emissions_tons_capita_non_negative,co2_emissions_tons_capita,True,0,0.5,20.0
-sea_level_rise_mm_non_negative,sea_level_rise_mm,True,0,1.0,5.0
-rainfall_mm_non_negative,rainfall_mm,True,0,501.0,2999.0
-extreme_weather_events_non_negative,extreme_weather_events,True,0,0.0,14.0
