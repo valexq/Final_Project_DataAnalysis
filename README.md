@@ -1,80 +1,32 @@
 # Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
-Proyecto integrador orientado al desarrollo de una solución completa de análisis de datos, inteligencia de negocios y aprendizaje computacional, utilizando indicadores climáticos globales como caso de estudio.
+Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
 
-El proyecto implementa un flujo de trabajo end-to-end que incluye procesos ETL, análisis exploratorio de datos (EDA), visualización de información, generación de dashboards y construcción de modelos predictivos supervisados.
-## Integrantes
-
-Grupo 5
+## Integrantes — Grupo 5
 
 | Nombre | Fase principal | GitHub |
 | --- | --- | --- |
-| Vanessa Alfaro |  | `@valexq` |
-| Juan Manuel Valencia |  | `@Juanchos2905` |
-| Ziuvar Ruiz | Fases 1 y 2 - ETL y EDA | `@ziuvar` |
+| Vanessa Alfaro | | `@valexq` |
+| Juan Manuel Valencia | | `@Juanchos2905` |
+| Ziuvar Ruiz | Fases 1 y 2 — ETL y EDA | `@ziuvar` |
 | Juan Cardona | | `@jcardser` |
+
 ---
 
 # Descripción del proyecto
 
-Este proyecto tiene como objetivo analizar indicadores relacionados con el cambio climático en múltiples países entre los años 2000 y 2023, utilizando técnicas de analítica de datos y aprendizaje automático para extraer patrones, generar conocimiento útil y construir modelos predictivos.
-
-El dataset incluye variables como:
-
-- Temperatura promedio
-- Emisiones de CO₂
-- Nivel del mar
-- Precipitaciones
-- Participación de energías renovables
-- Área forestal
-- Eventos climáticos extremos
-
-A partir de estos datos se desarrolló una solución analítica completa que permite:
-
-- Procesar y transformar datos mediante pipelines ETL.
-- Analizar tendencias y correlaciones climáticas.
-- Generar visualizaciones y dashboards interactivos.
-- Construir modelos predictivos supervisados.
-- Formular conclusiones y recomendaciones basadas en evidencia.
+El dataset contiene 1.000 registros con variables como temperatura promedio, emisiones de CO₂, nivel del mar, precipitaciones, energía renovable, área forestal y eventos climáticos extremos. A partir de ellos se construyó una solución analítica que cubre limpieza de datos, análisis exploratorio, visualización en dashboard y modelado predictivo.
 
 ---
 
 # Objetivos
 
-## Objetivo general
+Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL, inteligencia de negocios y aprendizaje computacional, con los siguientes entregables:
 
-Desarrollar un proyecto integral de análisis de datos y aprendizaje computacional aplicado al estudio del cambio climático, incorporando procesos ETL, inteligencia de negocios y modelado predictivo.
-
-## Objetivos específicos
-
-- Identificar y transformar fuentes de datos relevantes.
-- Realizar limpieza y análisis exploratorio de datos.
-- Diseñar visualizaciones y dashboards para apoyar la toma de decisiones.
-- Implementar modelos de aprendizaje supervisado.
-- Evaluar el rendimiento de los modelos mediante métricas apropiadas.
-- Generar conclusiones y recomendaciones estratégicas.
-
----
-
-# Relación con los resultados de aprendizaje
-
-## Inteligencia de Negocios (BI)
-
-- Definición de reglas de negocio para el tratamiento de datos.
-- Diseño de un modelo de datos para explotación analítica.
-- Creación de dashboards interactivos para visualización de insights.
-
-## Analítica de datos (AD)
-
-- Implementación del proceso ETL.
-- Limpieza y transformación de datos.
-- Análisis exploratorio y visualización de patrones.
-
-## Aprendizaje computacional (AC)
-
-- Implementación de modelos supervisados.
-- Evaluación mediante métricas de desempeño.
-- Aplicación de técnicas de Machine Learning.
+- Datos limpios y transformados listos para análisis.
+- Dashboard interactivo con insights accionables.
+- Modelo supervisado evaluado con métricas de desempeño.
+- Conclusiones y recomendaciones basadas en evidencia.
 
 ---
 
@@ -141,20 +93,21 @@ También se generaron visualizaciones para observar distribuciones, tendencias y
 
 ## Modelo Dimensional — Esquema Estrella
 
+El modelo fue simplificado respecto a la versión inicial para reflejar con mayor precisión la estructura real del dataset y facilitar su implementación en Power BI. Se eliminó `DIM_INDICADOR` porque en un dataset con variables fijas las métricas ya están contenidas en la tabla de hechos y una dimensión de metadatos no aporta valor analítico real. Se reemplazó `DIM_EVENTO_EXTREMO` por `DIM_SEVERIDAD`, que clasifica únicamente el nivel de impacto sin redundar con los conteos ya presentes en los hechos.
+
 ```mermaid
 erDiagram
-    FACT_INDICADORES_CLIMATICOS {
+    FACT_CLIMA {
         int id_tiempo FK
         int id_pais FK
-        int id_evento FK
         float Temperatura_C
         float Emisiones_CO2_TonXHab
-        float Aumento_Nivel_Mar_mm
-        float Precipitaciones_mm
-        int Poblacion
         float Energia_Renovable_Pct
         int Eventos_Extremos
+        float Precipitaciones_mm
         float Area_Forestal_Pct
+        float Aumento_Nivel_Mar_mm
+        int Poblacion
     }
 
     DIM_TIEMPO {
@@ -167,46 +120,25 @@ erDiagram
         int id_pais PK
         string Pais
         string Continente
-        string Region_Clima
-        string Nivel_Desarrollo
     }
 
-    DIM_EVENTO_EXTREMO {
-        int id_evento PK
-        int Frecuencia_Anual
-        string Tipo_Evento
-        int Severidad
-    }
-
-    DIM_INDICADOR {
-        int id_indicador PK
-        string Nombre
-        string Unidad_Medida
-        string Categoria
-        string Fuente_Dato
-    }
-
-    DIM_TIEMPO ||--o{ FACT_INDICADORES_CLIMATICOS : "tiene"
-    DIM_PAIS ||--o{ FACT_INDICADORES_CLIMATICOS : "registra"
-    DIM_EVENTO_EXTREMO ||--o{ FACT_INDICADORES_CLIMATICOS : "clasifica"
-    DIM_INDICADOR ||--o{ FACT_INDICADORES_CLIMATICOS : "describe"
+    DIM_TIEMPO ||--o{ FACT_CLIMA : "pertenece a"
+    DIM_PAIS ||--o{ FACT_CLIMA : "corresponde a"
 ```
 
 ## Descripción del modelo
 
-El modelo sigue un **esquema estrella** estándar de inteligencia de negocios, con una tabla de hechos central rodeada de cuatro dimensiones.
+El modelo sigue un **esquema estrella** con una tabla de hechos central rodeada de dos dimensiones. Solo se incluyen las dimensiones que tienen uso real en el dashboard: tiempo para analizar tendencias y país para comparar entre geografías.
 
-### Tabla de hechos — `FACT_INDICADORES_CLIMATICOS`
-Contiene las métricas numéricas de cada combinación país-año. Es la tabla principal del análisis con 1.000 registros (15 países × 24 años).
+### Tabla de hechos — `FACT_CLIMA`
+Contiene todas las métricas numéricas por combinación país-año. Es la tabla principal con 1.000 registros (15 países × 24 años).
 
 ### Dimensiones
 
-| Dimensión | Descripción |
+| Dimensión | Rol analítico |
 |-----------|-------------|
-| `DIM_TIEMPO` | Años del período 2000–2023 con clasificación por década |
-| `DIM_PAIS` | Los 15 países con atributos geográficos y nivel de desarrollo |
-| `DIM_EVENTO_EXTREMO` | Clasificación de eventos climáticos por frecuencia y severidad |
-| `DIM_INDICADOR` | Metadatos de cada variable: unidad, categoría y fuente |
+| `DIM_TIEMPO` | Permite analizar tendencias por año y comparar décadas (2000s, 2010s, 2020s) |
+| `DIM_PAIS` | Permite filtrar y agrupar métricas por país y por continente |
 
 ### Reglas de negocio
 
@@ -217,6 +149,39 @@ Contiene las métricas numéricas de cada combinación país-año. Es la tabla p
 | RN-03 | Las emisiones de CO₂ son toneladas per cápita |
 | RN-04 | La energía renovable y el área forestal son porcentajes (0–100) |
 | RN-05 | Los eventos extremos son conteo entero anual por país |
-| RN-06 | La severidad del evento se clasifica en 5 niveles |
-| RN-07 | El período de análisis es 2000–2023 (24 años, 15 países) |
+| RN-06 | El período de análisis es 2000–2023 (24 años, 15 países) |
+| RN-07 | El CO₂ per cápita es la métrica principal de presión ambiental por país |
+
+---
+
+## Insights del Dashboard
+
+Los siguientes hallazgos fueron extraídos directamente de los indicadores y visualizaciones del dashboard de Power BI construido sobre el dataset limpio.
+
+### Insight 1 — Temperatura en alza sostenida
+La temperatura promedio global del grupo analizado es de **21,11 °C**, superando en **+2,15 °C** el valor base registrado en el año 2000 (18,96 °C). La línea de tendencia del período 2000–2023 confirma un incremento aproximado de **0,05 °C por año**, coherente con los patrones globales de calentamiento documentados por la IPCC.
+
+### Insight 2 — UK encabeza las emisiones per cápita
+Con el mayor promedio de CO₂ por habitante entre los 15 países analizados, **UK lidera el ranking de presión ambiental**, seguido de Indonesia y Francia. Esto indica que los países europeos industrializados mantienen una huella de carbono per cápita mayor que economías emergentes como India o Brasil, a pesar de sus compromisos climáticos formales.
+
+### Insight 3 — Energía renovable lejos de la meta 2030
+El promedio global de energía renovable del grupo es de **26,75%**, menos de la mitad de la meta establecida por la Agencia Internacional de Energía para 2030 (60%). China, Brasil y Francia lideran en adopción de renovables, mientras que USA, Australia y South Africa presentan los valores más bajos, lo que correlaciona directamente con sus altas emisiones de CO₂.
+
+### Insight 4 — Las emisiones de CO₂ no han bajado
+La evolución del CO₂ por año muestra que las emisiones no han disminuido de forma sostenida en el período analizado. A pesar de las fluctuaciones año a año, la tendencia general entre 2000 y 2023 es **ligeramente ascendente**, lo que indica que los compromisos de reducción no se han traducido en resultados medibles para este grupo de países.
+
+### Insight 5 — Relación inversa entre CO₂ y energía renovable
+Los países con mayores emisiones de CO₂ per cápita son sistemáticamente los que menor porcentaje de energía renovable utilizan. Esta correlación negativa confirma que **la transición energética es la palanca más directa para reducir emisiones** y constituye el hallazgo más relevante del análisis para apoyar decisiones de política ambiental.
+
+---
+
+## Preguntas de negocio que responde el dashboard
+
+| Pregunta | Visual que responde |
+|---|---|
+| ¿Cómo evoluciona la temperatura global? | Gráfico de líneas — Temperatura por año |
+| ¿Qué países presentan mayor presión ambiental? | Barras horizontales — CO₂ por país |
+| ¿Han bajado las emisiones con el tiempo? | Gráfico de líneas — CO₂ por año |
+| ¿Qué tan lejos estamos de la meta renovable? | KPI — Energía renovable vs meta 60% |
+| ¿Qué países lideran en energía renovable? | Barras verticales — Renovable por país |
 
