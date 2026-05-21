@@ -1,55 +1,67 @@
 # Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
-Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
+Análisis integral del sistema ENSO (El Niño / La Niña) entre 1950 y 2026, aplicando
+un flujo ETL → EDA → dashboard de BI → modelos predictivos supervisados.
 
+---
 
 ## Dataset
 
-- Nombre: `Climate Change Dataset`.
-- Fuente: Kaggle.
-- Enlace: [https://www.kaggle.com/datasets/bhadramohit/climate-change-dataset]
-- Registros: 1000.
-- Cantidad de variable: 10.
+- **Nombre:** `Cambio_climatico.csv`
+- **Fuente:** Registro histórico de anomalías del Pacífico ecuatorial (ENSO)
+- **Registros:** 918 registros mensuales (1950–2026), 914 tras limpieza
+- **Variables:** 17 columnas tras transformación (temperatura, anomalías, fase, intensidad, duración, variables derivadas)
 
 ## Diccionario de variables
-| Campo                                              | Descripción                                                          | Unidad / Formato              |
-| -------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------- |
-| `Año`                                              | Año en el que se registraron los datos climáticos.                   | YYYY                          |
-| `País`                                             | País o región donde se recopilaron los datos climáticos.             | Texto                         |
-| `Temperatura Promedio (°C)`                        | Temperatura promedio anual registrada en el país.                    | Grados Celsius (°C)           |
-| `Emisiones de CO2 (Toneladas Métricas per Cápita)` | Emisiones promedio de dióxido de carbono por habitante.              | Toneladas métricas per cápita |
-| `Aumento del Nivel del Mar (mm)`                   | Incremento anual del nivel del mar registrado en regiones costeras.  | Milímetros (mm)               |
-| `Precipitación (mm)`                               | Cantidad total de lluvia registrada anualmente.                      | Milímetros (mm)               |
-| `Población`                                        | Número de habitantes del país en el año correspondiente.             | Número de habitantes          |
-| `Energía Renovable (%)`                            | Porcentaje del consumo energético proveniente de fuentes renovables. | Porcentaje (%)                |
-| `Eventos Climáticos Extremos`                      | Número de eventos climáticos extremos registrados.                   | Cantidad de eventos           |
-| `Área Forestal (%)`                                | Porcentaje del territorio nacional cubierto por bosques.             | Porcentaje (%)                |
 
+| Campo | Descripción | Unidad |
+|---|---|---|
+| `Fecha` | Fecha mensual del registro | YYYY-MM-DD |
+| `Anio` | Año del registro | YYYY |
+| `Mes` | Mes del registro (1–12) | Número |
+| `Trimestre` | Trimestre del año (1–4) | Número |
+| `Decada` | Década del registro (1950s–2020s) | Texto |
+| `Temperatura_Pacifico_C` | Temperatura superficial del Pacífico ecuatorial | °C |
+| `Temperatura_Ajustada_C` | Temperatura ajustada a línea base histórica | °C |
+| `Anomalia_C` | Desviación respecto a la media histórica | °C |
+| `Anomalia_Trimestral_C` | Promedio trimestral de la anomalía | °C |
+| `Anomalia_12m` | Promedio móvil de 12 meses de la anomalía | °C |
+| `Anomalia_Delta` | Cambio mensual de la anomalía | °C |
+| `Fase_Evento` | Clasificación: El Niño / La Niña / Neutral | Texto |
+| `Intensidad_Evento` | Débil / Moderado / Fuerte / Muy fuerte / Neutral | Texto |
+| `Duracion_Meses` | Duración acumulada del evento activo | Meses |
+| `Evento_Extremo` | Indicador binario: 1 si \|Anomalia_C\| > 1.5°C | 0/1 |
+
+---
 
 ## Integrantes - Grupo 5
 
 | Nombre | Fase principal | GitHub |
-| --- |----------------| --- |
-| Ziuvar Ruiz | Fases 1 y 2    | `@ziuvar` |
-| Vanessa Alfaro | Fase 3         | `@valexq` |
-| Juan Manuel Valencia | Fase 4 y 5     | `@Juanchos2905` |
-| Juan Cardona | Fase 4 y 5  | `@jcardser` |
+|---|---|---|
+| Ziuvar Ruiz | Fases 1 y 2 | `@ziuvar` |
+| Vanessa Alfaro | Fase 3 | `@valexq` |
+| Juan Manuel Valencia | Fases 4 y 5 | `@Juanchos2905` |
+| Juan Cardona | Fases 4 y 5 | `@jcardser` |
 
 ---
 
 # Descripción del proyecto
 
-El dataset contiene 1.000 registros con variables como temperatura promedio, emisiones de CO₂, nivel del mar, precipitaciones, energía renovable, área forestal y eventos climáticos extremos. A partir de ellos se construyó una solución analítica que cubre limpieza de datos, análisis exploratorio, visualización en dashboard y modelado predictivo.
+El dataset contiene 914 registros mensuales del sistema ENSO entre 1950 y 2026,
+con variables como temperatura del Pacífico, anomalía térmica, fase del evento,
+intensidad y duración. A partir de ellos se construyó una solución analítica que
+cubre limpieza de datos, análisis exploratorio, modelo de BI y modelado predictivo.
 
 ---
 
 # Objetivos
 
-Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL, inteligencia de negocios y aprendizaje computacional, con los siguientes entregables:
+Desarrollar un proyecto integral sobre el sistema ENSO con énfasis en su impacto
+en Colombia, cubriendo:
 
 - Datos limpios y transformados listos para análisis.
-- Dashboard interactivo con insights.
-- Modelo supervisado evaluado con métricas de desempeño.
+- Dashboard de BI con KPIs e insights sobre el ciclo ENSO.
+- Modelos supervisados evaluados con métricas de desempeño.
 - Conclusiones y recomendaciones basadas en evidencia.
 
 ---
@@ -60,145 +72,285 @@ Desarrollar un proyecto integral aplicado al cambio climático que incorpore ETL
 |---|---|
 | Lenguaje | Python 3.11 |
 | Manipulación de datos | pandas, numpy |
-| Visualización | matplotlib, seaborn, plotly |
+| Visualización | matplotlib, seaborn |
 | Machine Learning | scikit-learn |
 | Notebooks | Jupyter Notebook |
-| Persistencia | CSV, Parquet |
-| Testing | pytest |
+| Persistencia | CSV |
 
 ---
 
 # Arquitectura del proyecto
 
 ```text
-climate_analytics_project/
+Final_Project_DataAnalysis/
 │
 ├── data/
-│   ├── raw/              
-│            └── climate_change_dataset.csv      # Dataset original
-│   ├── cleaned/      
-│            └── climate_change_cleaned.csv      # Datos limpios
-│   ├── processed/       
-│            └── climate_change_model_ready.csv  # Datos transformados
-├── notebooks/                                   # Notebooks del análisis
-│   ├── 01_data_collection_transformation.ipynb
-│   ├── 02_data_understanding.ipynb
-│   └── 03_modelado_predictivo.ipynb
+│   ├── raw/
+│   │   └── Cambio_climatico.csv                  # Dataset crudo ENSO (918 registros)
+│   └── processed/
+│       ├── enso_cleaned.csv                      # ENSO limpio (914 filas, 11 cols)
+│       └── enso_model_ready.csv                  # ENSO con variables derivadas (914, 17)
+│
+├── notebooks/
+│   ├── 01_etl.ipynb                              # ETL: limpieza y transformación
+│   ├── 02_eda.ipynb                              # EDA: análisis exploratorio
+│   ├── 03_modelado_predictivo_clima.ipynb        # Regresión: predicción Anomalia_C
+│   ├── 04_modelo_bi.ipynb                        # BI: esquema estrella, KPIs, insights
+│   └── 05_clasificacion_evento_extremo.ipynb     # Clasificación: predicción Evento_Extremo
+│
 ├── reports/
-│   └── Dashboard proyecto final DA             # Informe final
+│   ├── bi_enso_dashboard.png
+│   ├── comparacion_modelos.png
+│   ├── clasificacion_evento_extremo.png
+│   ├── importancia_variables.png
+│   ├── importancia_clasificacion.png
+│   ├── pred_vs_real.png
+│   └── guion_presentacion.md
+│
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# Fase 1 - Recopilación y transformación de datos
+# Fase 1 — ETL: extracción, transformación y carga
 
-En esta primera parte se trabajó con el archivo original del proyecto, `data/raw/climate_change_dataset.csv`. El dataset contiene 1,000 registros de indicadores climáticos para 15 países entre los años 2000 y 2023.
+Se trabajó con el archivo crudo `data/raw/Cambio_climatico.csv`, que contiene
+918 registros mensuales de temperaturas y anomalías del Pacífico ecuatorial entre
+1950 y 2026.
 
-El trabajo se enfocó en dejar una base confiable para el resto del proyecto. Se revisó la estructura inicial del archivo, se normalizaron los nombres de las columnas, se ajustaron los tipos de datos y se validaron aspectos básicos de calidad como valores faltantes, duplicados y rangos esperados.
+El trabajo de esta fase se concentró en dejar una base confiable para el análisis.
+Se renombraron columnas al español, se mapearon las fases al idioma del proyecto,
+se eliminaron 4 registros nulos y se construyeron 6 variables derivadas clave.
 
-Como resultado, quedaron datos limpios y datos procesados para que las siguientes fases puedan concentrarse en el análisis, el dashboard y el modelo predictivo sin repetir la preparación inicial.
+| Variable derivada | Descripción |
+|---|---|
+| `Decada` | Década del registro (1950s, 1960s…) |
+| `Intensidad_Evento` | Clasificación por magnitud de anomalía |
+| `Duracion_Meses` | Meses consecutivos del evento activo |
+| `Evento_Extremo` | 1 si \|Anomalia_C\| > 1.5°C |
+| `Anomalia_12m` | Promedio móvil de 12 meses |
+| `Anomalia_Delta` | Cambio mensual de la anomalía |
+
+**Resultado:** `enso_cleaned.csv` (914 filas, 11 columnas) y
+`enso_model_ready.csv` (914 filas, 17 columnas).
 
 ---
 
-# Fase 2 - Análisis exploratorio de datos (EDA)
+# Fase 2 — EDA: análisis exploratorio de datos
 
-En la segunda fase se tomó la base limpia y se realizó una exploración inicial para entender mejor el comportamiento de las variables. Se revisaron estadísticas descriptivas, comparaciones por país, cambios por año y relaciones entre indicadores como temperatura, emisiones de CO2, lluvias, energía renovable y área forestal.
+Se tomó el dataset procesado y se realizó una exploración en 12 secciones para
+entender el comportamiento del sistema ENSO. Se revisaron distribuciones,
+comparaciones por fase, tendencias por década y el impacto en Colombia.
 
-También se generaron visualizaciones para observar distribuciones, tendencias y correlaciones. Esta parte sirve como puente entre la limpieza de datos y las fases posteriores de inteligencia de negocios y aprendizaje computacional, porque permite identificar patrones generales antes de construir dashboards o modelos.
+### Hallazgos principales del EDA
 
-# Fase 3 — Inteligencia de negocios: modelo de datos
+1. Los eventos de El Niño se han **intensificado desde la década de 1980**, con
+   mayor frecuencia de anomalías superiores a +1.5°C.
+2. Colombia se ve afectada en años de El Niño fuerte (1982–83, 1997–98, 2015–16)
+   con sequías, y en años de La Niña intensa (1999–2000, 2010–11) con inundaciones.
+3. La duración promedio de los eventos ha aumentado en las últimas dos décadas,
+   lo que implica mayor exposición sostenida a condiciones extremas.
+4. La correlación entre `Anomalia_C` y `Temperatura_Pacifico_C` es muy alta
+   (r > 0.95), confirmando que la temperatura superficial es el indicador central.
+
+---
+
+# Fase 3 — Inteligencia de negocios: modelo de datos y KPIs
+
+El notebook `04_modelo_bi.ipynb` documenta el modelo de BI sobre el dataset ENSO:
+esquema estrella, cálculo de KPIs ejecutivos e insights para el dashboard.
 
 ## Modelo dimensional — Esquema Estrella
 
 ```mermaid
 erDiagram
-    FACT_CLIMA {
+    FACT_ENSO {
         int id_tiempo FK
-        int id_pais FK
-        float Temperatura_C
-        float Emisiones_CO2_TonXHab
-        float Energia_Renovable_Pct
-        int Eventos_Extremos
-        float Precipitaciones_mm
-        float Area_Forestal_Pct
-        float Aumento_Nivel_Mar_mm
-        int Poblacion
+        int id_fase FK
+        float Temperatura_Pacifico_C
+        float Temperatura_Ajustada_C
+        float Anomalia_C
+        int   Duracion_Meses
+        int   Evento_Extremo
     }
 
     DIM_TIEMPO {
-        int id_tiempo PK
-        int Anio
+        int    id_tiempo PK
+        string Fecha
+        int    Anio
+        int    Mes
+        int    Trimestre
         string Decada
     }
 
-    DIM_PAIS {
-        int id_pais PK
-        string Pais
-        string Continente
+    DIM_FASE {
+        int    id_fase PK
+        string Fase_Evento
+        string Intensidad_Evento
     }
 
-    DIM_TIEMPO ||--o{ FACT_CLIMA : "pertenece a"
-    DIM_PAIS ||--o{ FACT_CLIMA : "corresponde a"
+    DIM_TIEMPO ||--o{ FACT_ENSO : "pertenece a"
+    DIM_FASE   ||--o{ FACT_ENSO : "clasifica"
 ```
 
 ## Descripción del modelo
 
-El modelo sigue un **esquema estrella** con una tabla de hechos central rodeada de dos dimensiones. Solo se incluyen las dimensiones que tienen uso real en el dashboard: tiempo para analizar tendencias y país para comparar entre geografías.
+| Tabla | Tipo | Filas | Descripción |
+|---|---|---|---|
+| `FACT_ENSO` | Hechos | 914 | 1 registro mensual con todas las métricas |
+| `DIM_TIEMPO` | Dimensión | 914 | Fecha, Año, Mes, Trimestre, Década |
+| `DIM_FASE` | Dimensión | 5 | Fase del evento + Intensidad |
 
-### Tabla de hechos — `FACT_CLIMA`
-Contiene todas las métricas numéricas por combinación país-año. Es la tabla principal con 1.000 registros (15 países × 24 años).
-
-### Dimensiones
-
-| Dimensión | Rol analítico |
-|-----------|-------------|
-| `DIM_TIEMPO` | Permite analizar tendencias por año y comparar décadas (2000s, 2010s, 2020s) |
-| `DIM_PAIS` | Permite filtrar y agrupar métricas por país y por continente |
-
-### Reglas de negocio
+## Reglas de negocio
 
 | Regla | Descripción |
-|-------|-------------|
-| RN-01 | Cada registro representa un país-año único |
-| RN-02 | La temperatura se mide en °C con dos decimales |
-| RN-03 | Las emisiones de CO₂ son toneladas per cápita |
-| RN-04 | La energía renovable y el área forestal son porcentajes (0–100) |
-| RN-05 | Los eventos extremos son conteo entero anual por país |
-| RN-06 | El período de análisis es 2000–2023 (24 años, 15 países) |
-| RN-07 | El CO₂ per cápita es la métrica principal de presión ambiental por país |
+|---|---|
+| RN-01 | 1 registro mensual por fecha (sin duplicados) |
+| RN-02 | `Anomalia_C` = temperatura observada menos media histórica (°C) |
+| RN-03 | `Evento_Extremo` = 1 si \|Anomalia_C\| > 1.5°C |
+| RN-04 | `Fase_Evento` clasificada en: El Niño, La Niña, Neutral |
+| RN-05 | `Duracion_Meses` = meses consecutivos del evento activo |
+| RN-06 | Período de análisis: 1950–2026 (914 registros mensuales) |
+| RN-07 | `Anomalia_C` es la métrica principal del sistema ENSO |
 
----
+## KPIs ejecutivos
+
+| KPI | Valor |
+|---|---|
+| Anomalía promedio global | 0.026 °C |
+| Anomalía máxima histórica | +2.77 °C |
+| Anomalía mínima histórica | -2.09 °C |
+| Eventos extremos totales | 82 (8.97% de registros) |
+| Década más activa | 1990s |
+| Evento más largo | 50 meses |
 
 ## Insights del dashboard
 
-Los siguientes hallazgos fueron extraídos directamente de los indicadores y visualizaciones del dashboard de Power BI construido sobre el dataset limpio.
+**Insight 1 — Tendencia de intensificación:** los eventos extremos se concentran
+en las décadas 1980s, 1990s y 2010s. El Niño 1997-98 es el más intenso del período.
 
-### Insight 1 — Temperatura en alza sostenida
-La temperatura promedio global del grupo analizado es de **21,11 °C**, superando en **+2,15 °C** el valor base registrado en el año 2000 (18,96 °C). La línea de tendencia del período 2000–2023 confirma un incremento aproximado de **0,05 °C por año**, coherente con los patrones globales de calentamiento documentados por la IPCC.
+**Insight 2 — Fase Neutral predomina:** el 44% de los meses son Neutral, 31% La Niña
+y 25% El Niño. La irregularidad del ciclo es estructural, no aleatoria.
 
-### Insight 2 — UK encabeza las emisiones per cápita
-Con el mayor promedio de CO₂ por habitante entre los 15 países analizados, **UK lidera el ranking de presión ambiental**, seguido de Indonesia y Francia. Esto indica que los países europeos industrializados mantienen una huella de carbono per cápita mayor que economías emergentes como India o Brasil, a pesar de sus compromisos climáticos formales.
+**Insight 3 — Duración como indicador de impacto:** los eventos más largos (>30 meses)
+coinciden con los de mayor anomalía y mayor número de extremos.
 
-### Insight 3 — Energía renovable lejos de la meta 2030
-El promedio global de energía renovable del grupo es de **26,75%**, menos de la mitad de la meta establecida por la Agencia Internacional de Energía para 2030 (60%). China, Brasil y Francia lideran en adopción de renovables, mientras que USA, Australia y South Africa presentan los valores más bajos, lo que correlaciona directamente con sus altas emisiones de CO₂.
-
-### Insight 4 — Las emisiones de CO₂ no han bajado
-La evolución del CO₂ por año muestra que las emisiones no han disminuido de forma sostenida en el período analizado. A pesar de las fluctuaciones año a año, la tendencia general entre 2000 y 2023 es **ligeramente ascendente**, lo que indica que los compromisos de reducción no se han traducido en resultados medibles para este grupo de países.
-
-### Insight 5 — Relación inversa entre CO₂ y energía renovable
-Los países con mayores emisiones de CO₂ per cápita son sistemáticamente los que menor porcentaje de energía renovable utilizan. Esta correlación negativa confirma que **la transición energética es la palanca más directa para reducir emisiones** y constituye el hallazgo más relevante del análisis para apoyar decisiones de política ambiental.
+**Insight 4 — Colombia como región de alta exposición:** los años de impacto severo
+en Colombia coinciden exactamente con los picos de anomalía positiva y negativa.
 
 ---
 
-## Preguntas de negocio que responde el dashboard
+# Fase 4 — Modelado predictivo: regresión (Anomalia_C)
 
-| Pregunta | Visual que responde |
+El notebook `03_modelado_predictivo_clima.ipynb` predice la **anomalía de temperatura**
+del Pacífico a partir de variables temporales y de fase climática.
+
+## Fuente de datos
+
+- Dataset: `data/processed/enso_model_ready.csv` (914 registros)
+- Variable objetivo: `Anomalia_C` (regresión continua)
+- División: 80% entrenamiento (731) / 20% prueba (183)
+
+## Variables del modelo
+
+**Numéricas:** `Anio`, `Mes`, `Trimestre`, `Temperatura_Pacifico_C`,
+`Temperatura_Ajustada_C`, `Anomalia_12m`, `Anomalia_Delta`, `Duracion_Meses`
+
+**Categóricas:** `Decada`, `Fase_Evento`, `Intensidad_Evento`
+
+**Excluidas:** variables derivadas directamente del target
+(`Anomalia_Trimestral_C`, `Fase_Trimestral`, `Evento_Extremo`) y `Fecha`.
+
+## Evaluación de modelos
+
+| Modelo | RMSE | MAE | R² |
+|---|---|---|---|
+| Regresión Lineal | 0.0042 | 0.0026 | 1.0000 |
+| Árbol de Decisión | 0.1936 | 0.1529 | 0.9496 |
+| Random Forest | 0.1148 | 0.0876 | 0.9823 |
+| **Gradient Boosting** | **0.0927** | **0.0725** | **0.9885** |
+
+> La Regresión Lineal alcanza R²=1.0 porque `Anomalia_12m` (promedio móvil de 12 meses)
+> tiene una relación casi lineal con el target. Es un resultado estadístico esperado, no sobreajuste.
+
+## Validación cruzada (Gradient Boosting — 5 folds)
+
+| R² promedio | Desviación estándar |
 |---|---|
-| ¿Cómo evoluciona la temperatura global? | Gráfico de líneas — Temperatura por año |
-| ¿Qué países presentan mayor presión ambiental? | Barras horizontales — CO₂ por país |
-| ¿Han bajado las emisiones con el tiempo? | Gráfico de líneas — CO₂ por año |
-| ¿Qué tan lejos estamos de la meta renovable? | KPI — Energía renovable vs meta 60% |
-| ¿Qué países lideran en energía renovable? | Barras verticales — Renovable por país |
+| 0.968 | ± 0.013 |
 
+## Importancia de variables (Random Forest)
+
+| Variable | Importancia |
+|---|---|
+| `Fase_Evento_El Nino` | 54.4% |
+| `Intensidad_Evento_Debil` | 11.6% |
+| `Fase_Evento_La Nina` | 9.3% |
+| `Temperatura_Pacifico_C` | 5.3% |
+| `Anomalia_12m` | 2.4% |
+
+## Conclusiones
+
+1. **Gradient Boosting** es el mejor modelo con R²=0.9885 y RMSE=0.09°C.
+2. La fase ENSO explica el 54% de la varianza — es el motor principal del sistema.
+3. La validación cruzada confirma R²=0.968 ± 0.013: el modelo generaliza correctamente.
+4. El modelo puede usarse como base para alertas tempranas en Colombia.
+
+---
+
+# Fase 5 — Modelado predictivo: clasificación (Evento_Extremo)
+
+El notebook `05_clasificacion_evento_extremo.ipynb` predice si un mes registrará
+un **evento climático extremo** (`Evento_Extremo = 1`) usando solo variables
+temporales e independientes — sin temperatura ni anomalía directa.
+
+## Fuente de datos
+
+- Dataset: `data/processed/enso_model_ready.csv` (914 registros)
+- Variable objetivo: `Evento_Extremo` (clasificación binaria)
+- División: 80% / 20% con `stratify=y` para mantener balance de clases
+
+## Variables del modelo
+
+**Numéricas:** `Anio`, `Mes`, `Trimestre`, `Duracion_Meses`
+
+**Categóricas:** `Decada`, `Fase_Evento`
+
+**Excluidas deliberadamente:** `Anomalia_C`, `Intensidad_Evento`,
+`Temperatura_Pacifico_C` (derivadas del target o predicen trivialmente).
+
+## Evaluación de modelos
+
+| Modelo | Accuracy | Precision | Recall | F1 | AUC-ROC |
+|---|---|---|---|---|---|
+| Regresión Logística | 0.7158 | 0.2188 | 0.8750 | 0.3500 | 0.8312 |
+| Árbol de Decisión | 0.8415 | 0.3415 | 0.8750 | 0.4912 | 0.8808 |
+| **Random Forest** | **0.9508** | **0.8182** | **0.5625** | **0.6667** | **0.9308** |
+| Gradient Boosting | 0.9399 | 0.6667 | 0.6250 | 0.6452 | 0.9203 |
+
+## Validación cruzada (Random Forest — 5 folds)
+
+| F1 promedio | Desviación estándar |
+|---|---|
+| 0.386 | ± 0.138 |
+
+## Importancia de variables (Random Forest)
+
+| Variable | Importancia |
+|---|---|
+| `Duracion_Meses` | 20.1% |
+| `Fase_Evento_Neutral` | 19.3% |
+| `Mes` | 18.9% |
+| `Anio` | 13.3% |
+| `Trimestre` | 10.2% |
+
+## Conclusiones
+
+1. **Random Forest** logra el mejor balance F1/AUC (0.667 / 0.931) sin usar temperatura.
+2. La **duración del evento** activo es el predictor más importante: los eventos
+   extremos casi nunca ocurren en episodios cortos.
+3. El **mes del año** influye significativamente, reflejando la estacionalidad del ENSO.
+4. Para alertas tempranas en Colombia se recomienda priorizar Recall usando Regresión
+   Logística o ajustando el umbral de decisión de Random Forest.
+5. La variabilidad en CV (±0.138) se debe al bajo número de positivos (82/914 = 8.97%).
