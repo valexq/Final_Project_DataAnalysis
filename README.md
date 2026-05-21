@@ -7,8 +7,8 @@ un flujo ETL → EDA → dashboard de BI → modelos predictivos supervisados.
 
 ## Dataset
 
-- **Nombre:** `Cambio_climatico.csv`
-- **Fuente:** Registro histórico de anomalías del Pacífico ecuatorial (ENSO)
+- **Nombre:** `Cambio_climatico`
+- **Fuente:** [Registro histórico de anomalías del Pacífico ecuatorial (ENSO)](https://www.datos.gov.co/dataset/Cambio-clim-tico/bgt6-7zyr/about_data)
 - **Registros:** 918 registros mensuales (1950–2026), 914 tras limpieza
 - **Variables:** 17 columnas tras transformación (temperatura, anomalías, fase, intensidad, duración, variables derivadas)
 
