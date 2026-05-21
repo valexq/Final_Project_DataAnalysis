@@ -1,6 +1,6 @@
 # Proyecto de analítica de datos y modelo predictivo sobre cambio climático
 
-Análisis integral de indicadores climáticos globales (2000–2024) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
+Análisis integral de indicadores climáticos globales (2000–2023) para 15 países, aplicando un flujo ETL → EDA → dashboard de BI → modelo predictivo supervisado.
 
 
 ## Dataset
@@ -12,6 +12,18 @@ Análisis integral de indicadores climáticos globales (2000–2024) para 15 pa�
 - Cantidad de variable: 10.
 
 ## Diccionario de variables
+| Campo                                              | Descripción                                                          | Unidad / Formato              |
+| -------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------- |
+| `Año`                                              | Año en el que se registraron los datos climáticos.                   | YYYY                          |
+| `País`                                             | País o región donde se recopilaron los datos climáticos.             | Texto                         |
+| `Temperatura Promedio (°C)`                        | Temperatura promedio anual registrada en el país.                    | Grados Celsius (°C)           |
+| `Emisiones de CO2 (Toneladas Métricas per Cápita)` | Emisiones promedio de dióxido de carbono por habitante.              | Toneladas métricas per cápita |
+| `Aumento del Nivel del Mar (mm)`                   | Incremento anual del nivel del mar registrado en regiones costeras.  | Milímetros (mm)               |
+| `Precipitación (mm)`                               | Cantidad total de lluvia registrada anualmente.                      | Milímetros (mm)               |
+| `Población`                                        | Número de habitantes del país en el año correspondiente.             | Número de habitantes          |
+| `Energía Renovable (%)`                            | Porcentaje del consumo energético proveniente de fuentes renovables. | Porcentaje (%)                |
+| `Eventos Climáticos Extremos`                      | Número de eventos climáticos extremos registrados.                   | Cantidad de eventos           |
+| `Área Forestal (%)`                                | Porcentaje del territorio nacional cubierto por bosques.             | Porcentaje (%)                |
 
 
 ## Integrantes - Grupo 5
